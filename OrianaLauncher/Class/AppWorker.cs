@@ -40,13 +40,14 @@ namespace OrianaLauncher.Class
         public void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             var backgroundWorkerCode = sender as BackgroundWorker;
+
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
 
             ReleaseAsset asset = new ReleaseAsset();
 
             backgroundWorker.ReportProgress(0);
 
-            foreach (ReleaseAsset ra in activeApp.release.Assets)
+            foreach (ReleaseAsset ra in this.orianaLauncher.appList.apps[0].release.Assets)
             {
                 if (ra.Name.Contains("zip"))
                 {
@@ -63,7 +64,7 @@ namespace OrianaLauncher.Class
                 client.DownloadFile(asset.BrowserDownloadUrl, path);
             }
 
-            backgroundWorker.ReportProgress(50);
+            backgroundWorker.ReportProgress(25);
 
             string appPath = this.orianaLauncher.appPath + "\\OrianaApps\\" + activeApp.name;
 
@@ -72,11 +73,34 @@ namespace OrianaLauncher.Class
 
             ZipFile.ExtractToDirectory(path, appPath);
 
+            backgroundWorker.ReportProgress(50);
+
+            foreach (ReleaseAsset ra in activeApp.release.Assets)
+            {
+                if (ra.Name.Contains("zip"))
+                {
+                    asset = ra;
+                    break;
+                }
+            }
+
+            path = this.orianaLauncher.tempPath + "\\" + asset.Name;
+            this.orianaLauncher.utils.FileDelete(path);
+
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(asset.BrowserDownloadUrl, path);
+            }
+
+            backgroundWorker.ReportProgress(75);
+
+            ZipFile.ExtractToDirectory(path, appPath);
+
             if (this.orianaLauncher.config.containsApp(activeApp.name))
             {
                 this.orianaLauncher.config.removeApp(activeApp.name);
             }
-            this.orianaLauncher.config.installedApp.Add(new InstalledApp(activeApp.name, Version.Parse(activeApp.release.TagName)));
+            this.orianaLauncher.config.installedApp.Add(new InstalledApp(activeApp.name, activeApp.release.TagName));
             this.orianaLauncher.config.update(this.orianaLauncher);
 
             backgroundWorker.ReportProgress(100);
@@ -94,12 +118,21 @@ namespace OrianaLauncher.Class
             
             if (e.ProgressPercentage == 0)
             {
-                AppDownloadStatus.Text = this.orianaLauncher.translator.lg("Downloading ...");
+                AppDownloadStatus.Text = this.orianaLauncher.translator.lg("Downloading Client ...");
             }
 
+            if (e.ProgressPercentage == 25)
+            {
+                AppDownloadStatus.Text = this.orianaLauncher.translator.lg("Extracting Client ...");
+            }
             if (e.ProgressPercentage == 50)
             {
-                AppDownloadStatus.Text = this.orianaLauncher.translator.lg("Extracting ...");
+                AppDownloadStatus.Text = this.orianaLauncher.translator.lg("Downloading Mod ...");
+            }
+
+            if (e.ProgressPercentage == 75)
+            {
+                AppDownloadStatus.Text = this.orianaLauncher.translator.lg("Extracting Mod ...");
             }
         }
 

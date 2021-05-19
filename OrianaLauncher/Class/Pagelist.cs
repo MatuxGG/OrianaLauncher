@@ -22,14 +22,17 @@ namespace OrianaLauncher.Class
         {
             foreach (App a in this.orianaLauncher.appList.apps)
             {
-                if (a.changelogEnabled)
+                if (a.name != "Origin")
                 {
-                    this.pages.Add(new Page("Main-" + a.name, new string[] { "Menu", "AppHeader", "AppInfo", "AppChangelog", "AppDownload" }));
-                } else
-                {
-                    this.pages.Add(new Page("Main-" + a.name, new string[] { "Menu", "AppHeader", "AppInfoLarge", "AppDownload" }));
+                    if (a.changelogEnabled)
+                    {
+                        this.pages.Add(new Page("Main-" + a.name, new string[] { "Menu", "AppHeader", "AppInfo", "AppChangelog", "AppDownload" }));
+                    }
+                    else
+                    {
+                        this.pages.Add(new Page("Main-" + a.name, new string[] { "Menu", "AppHeader", "AppInfoLarge", "AppDownload" }));
+                    }
                 }
-                
             }
             
         }

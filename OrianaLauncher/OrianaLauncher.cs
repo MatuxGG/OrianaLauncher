@@ -66,7 +66,7 @@ namespace OrianaLauncher
 
             this.appList = new Applist(this);
             await this.appList.load();
-            this.activeApp = 0;
+            this.activeApp = 1;
 
             this.componentList = new Componentlist(this);
             this.componentList.load();

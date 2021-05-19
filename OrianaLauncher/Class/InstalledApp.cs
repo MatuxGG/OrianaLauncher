@@ -10,9 +10,9 @@ namespace OrianaLauncher.Class
     {
         public string name;
 
-        public Version version;
+        public string version;
 
-        public InstalledApp(string name, Version version)
+        public InstalledApp(string name, string version)
         {
             this.name = name;
             this.version = version;

@@ -41,11 +41,17 @@ namespace OrianaLauncher.Class
                 case "Oriana Launcher by Matux - Designed by Asman - Mods & Content by Lunastellia":
                     return "Launcher Oriana par Matux - Design par Asman - Mods & Contenu par Lunastellia";
                     break;
-                case "Downloading ...":
-                    return "Téléchargement ...";
+                case "Downloading Client ...":
+                    return "Téléchargement du Client ...";
                     break;
-                case "Extracting ...":
-                    return "Extraction ...";
+                case "Extracting Client ...":
+                    return "Extraction du Client ...";
+                    break;
+                case "Downloading Mod ...":
+                    return "Téléchargement du Mod ...";
+                    break;
+                case "Extracting Mod ...":
+                    return "Extraction du Mod ...";
                     break;
                 case "Completed !":
                     return "Terminé !";

@@ -47,28 +47,33 @@ namespace OrianaLauncher.Class
             int offset = 0;
             foreach(App a in this.orianaLauncher.appList.apps)
             {
-                PictureBox AppPic = new System.Windows.Forms.PictureBox();
-                AppPic.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                AppPic.Location = new System.Drawing.Point((int)(20 * ratioX), (int)((20 + 120*offset) * ratioY));
-                if (offset == 0 || offset > 2)
+                if (a.name != "Origin")
                 {
-                    AppPic.BackgroundImage = global::OrianaLauncher.Properties.Resources.challenger;
-                } else if (offset == 1)
-                {
-                    AppPic.BackgroundImage = global::OrianaLauncher.Properties.Resources.challengerLite;
-                } else if (offset == 2)
-                {
-                    AppPic.BackgroundImage = global::OrianaLauncher.Properties.Resources.challengerBeta;
-                }
+                    PictureBox AppPic = new System.Windows.Forms.PictureBox();
+                    AppPic.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    AppPic.Location = new System.Drawing.Point((int)(20 * ratioX), (int)((20 + 120 * offset) * ratioY));
+                    if (a.name == "Challenger Lite")
+                    {
+                        AppPic.BackgroundImage = global::OrianaLauncher.Properties.Resources.challengerLite; 
+                    }
+                    else if (a.name == "Challenger Beta")
+                    {
+                        AppPic.BackgroundImage = global::OrianaLauncher.Properties.Resources.challengerBeta;
+                    }
+                    else
+                    {
 
-                AppPic.BackgroundImageLayout = ImageLayout.Stretch;
-                AppPic.Name = "AppPic="+offset;
-                AppPic.Size = new System.Drawing.Size((int)(100 * ratioX), (int)(100 * ratioY));
-                AppPic.Cursor = Cursors.Hand;
-                AppPic.TabStop = false;
-                AppPic.Click += new EventHandler(this.events.changeApp);
-                MenuPanel.Controls.Add(AppPic);
-                offset++;
+                        AppPic.BackgroundImage = global::OrianaLauncher.Properties.Resources.challenger;
+                    }
+                    AppPic.BackgroundImageLayout = ImageLayout.Stretch;
+                    AppPic.Name = "AppPic=" + (offset+1);
+                    AppPic.Size = new System.Drawing.Size((int)(100 * ratioX), (int)(100 * ratioY));
+                    AppPic.Cursor = Cursors.Hand;
+                    AppPic.TabStop = false;
+                    AppPic.Click += new EventHandler(this.events.changeApp);
+                    MenuPanel.Controls.Add(AppPic);
+                    offset++;
+                }
             }
 
             this.components.Add(c);
@@ -169,7 +174,7 @@ namespace OrianaLauncher.Class
             AppInfoLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppInfoLabel.ForeColor = System.Drawing.SystemColors.Control;
             AppInfoLabel.TextAlign = ContentAlignment.TopLeft;
-            AppInfoLabel.Location = new System.Drawing.Point((int)(5 * ratioX), (int)(5 * ratioY));
+            AppInfoLabel.Location = new System.Drawing.Point((int)(10 * ratioX), (int)(10 * ratioY));
             AppInfoLabel.Name = "AppInfoLabel";
             AppInfoLabel.AutoSize = true;
             AppInfoLabel.Text = "Info lite";
@@ -199,7 +204,7 @@ namespace OrianaLauncher.Class
             AppInfoLargeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppInfoLargeLabel.ForeColor = System.Drawing.SystemColors.Control;
             AppInfoLargeLabel.TextAlign = ContentAlignment.TopLeft;
-            AppInfoLargeLabel.Location = new System.Drawing.Point((int)(5 * ratioX), (int)(5 * ratioY));
+            AppInfoLargeLabel.Location = new System.Drawing.Point((int)(10 * ratioX), (int)(10 * ratioY));
             AppInfoLargeLabel.Name = "AppInfoLargeLabel";
             AppInfoLargeLabel.AutoSize = true;
             AppInfoLargeLabel.Text = "Info large";
@@ -298,7 +303,6 @@ namespace OrianaLauncher.Class
             AppDownloadPercent.Location = new System.Drawing.Point((int)(1660 * ratioX), (int)(40 * ratioY));
             AppDownloadPercent.Size = new System.Drawing.Size((int)(100 * ratioX), (int)(30 * ratioY));
             AppDownloadPercent.Name = "AppDownloadPercent";
-            AppDownloadPercent.Text = "70%";
             AppDownloadPanel.Controls.Add(AppDownloadPercent);
 
             System.Windows.Forms.Label AppDownloadStatus = new System.Windows.Forms.Label();
@@ -309,7 +313,6 @@ namespace OrianaLauncher.Class
             AppDownloadStatus.Location = new System.Drawing.Point((int)(1350 * ratioX), (int)(40 * ratioY));
             AppDownloadStatus.Size = new System.Drawing.Size((int)(300 * ratioX), (int)(30 * ratioY));
             AppDownloadStatus.Name = "AppDownloadStatus";
-            AppDownloadStatus.Text = "Download in Progress ...";
             AppDownloadPanel.Controls.Add(AppDownloadStatus);
 
             System.Windows.Forms.Label AppDownloadCredits = new System.Windows.Forms.Label();
@@ -329,7 +332,6 @@ namespace OrianaLauncher.Class
             AppDownloadUpdateButton.Name = "AppDownloadUpdateButton";
             AppDownloadUpdateButton.TextAlign = ContentAlignment.MiddleCenter;
             AppDownloadUpdateButton.Size = new System.Drawing.Size((int)(150 * ratioX), (int)(30 * ratioY));
-            AppDownloadUpdateButton.Text = "Update";
             AppDownloadUpdateButton.TabStop = false;
             AppDownloadUpdateButton.Click += new EventHandler(this.events.installApp);
             AppDownloadUpdateButton.UseVisualStyleBackColor = true;
@@ -373,10 +375,8 @@ namespace OrianaLauncher.Class
             Label AppHeaderTitle = (Label) this.get("AppHeader").getControl("AppHeaderPanel").Controls["AppHeaderTitle"];
             AppHeaderTitle.Text = activeApp.name;
 
-
-
             Panel MenuPanel = (Panel)this.get("Menu").getControl("MenuPanel");
-            int i = 0;
+            int i = 1;
             foreach(Control c in MenuPanel.Controls)
             {
                 if (c is PictureBox)

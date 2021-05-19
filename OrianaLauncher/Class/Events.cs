@@ -42,7 +42,6 @@ namespace OrianaLauncher.Class
         {
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
             string appPath = this.orianaLauncher.appPath + "OrianaApps\\" + activeApp.name + "\\" + activeApp.appFile;
-            MessageBox.Show(appPath, "Oriana Launcher already opened", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Process.Start("explorer", appPath);
         }
 
