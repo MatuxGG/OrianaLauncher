@@ -17,3 +17,6 @@ D:\visualstudio\OrianaLauncher\OrianaLauncher\obj\Debug\net5.0-windows\ref\Orian
 D:\visualstudio\OrianaLauncher\OrianaLauncher\obj\Debug\net5.0-windows\OrianaLauncher.pdb
 D:\visualstudio\OrianaLauncher\OrianaLauncher\obj\Debug\net5.0-windows\OrianaLauncher.genruntimeconfig.cache
 D:\visualstudio\OrianaLauncher\OrianaLauncher\obj\Debug\net5.0-windows\OrianaLauncher.Properties.Resources.resources
+D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Octokit.dll
+D:\visualstudio\OrianaLauncher\OrianaLauncher\obj\Debug\net5.0-windows\OrianaLauncher.csproj.CopyComplete
+D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Newtonsoft.Json.dll

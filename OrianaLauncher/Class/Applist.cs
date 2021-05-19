@@ -10,9 +10,26 @@ namespace OrianaLauncher.Class
     {
         public List<App> apps;
 
-        public Applist(App app)
+        public OrianaLauncher orianaLauncher;
+
+        public Applist(OrianaLauncher orianaLauncher)
         {
-            this.apps = apps;
+            this.apps = new List<App>();
+            this.orianaLauncher = orianaLauncher;
         }
+
+        public async Task load()
+        {
+            this.apps.Add(new App("Challenger", "MatuxGG", "Challenger-Among-Us", new string[] { }, new string[] { "Beta", "Lite" }, "Among Us.exe", true));
+            this.apps.Add(new App("Challenger Lite", "MatuxGG", "Challenger-Among-Us", new string[] { "Lite" }, new string[] { "Beta" }, "Among Us.exe", false));
+            this.apps.Add(new App("Challenger Beta", "MatuxGG", "Challenger-Among-Us", new string[] { "Beta" }, new string[] { "Lite" }, "Among Us.exe", false));
+
+            foreach(App a in this.apps)
+            {
+                await a.getGithubRelease(this.orianaLauncher.token);
+            }
+        }
+
+        
     }
 }

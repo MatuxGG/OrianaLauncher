@@ -20,7 +20,18 @@ namespace OrianaLauncher.Class
 
         public void load()
         {
-            this.pages.Add(new Page("Main", new string[] { "Menu", "AppHeader", "AppInfo", "AppChangelog", "AppDownload" })) ;
+            foreach (App a in this.orianaLauncher.appList.apps)
+            {
+                if (a.changelogEnabled)
+                {
+                    this.pages.Add(new Page("Main-" + a.name, new string[] { "Menu", "AppHeader", "AppInfo", "AppChangelog", "AppDownload" }));
+                } else
+                {
+                    this.pages.Add(new Page("Main-" + a.name, new string[] { "Menu", "AppHeader", "AppInfoLarge", "AppDownload" }));
+                }
+                
+            }
+            
         }
 
         public void clear()

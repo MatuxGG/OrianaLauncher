@@ -11,5 +11,11 @@ namespace OrianaLauncher.Class
         public string name;
 
         public Version version;
+
+        public InstalledApp(string name, Version version)
+        {
+            this.name = name;
+            this.version = version;
+        }
     }
 }
