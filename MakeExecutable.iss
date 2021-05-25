@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=D:\visualstudio\OrianaLauncher\output
-OutputBaseFilename=OrianaSetup
+OutputBaseFilename=OrianaInstaller
 SetupIconFile=D:\visualstudio\OrianaLauncher\OrianaLauncher\Assets\logo_Oriana.ico
 Compression=lzma
 SolidCompression=yes

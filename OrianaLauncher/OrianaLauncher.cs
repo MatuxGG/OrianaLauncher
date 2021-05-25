@@ -65,8 +65,8 @@ namespace OrianaLauncher
             }
 
             //Check update
-            //this.updater = new Updater(this);
-            //await this.updater.checkUpdate();
+            this.updater = new Updater(this);
+            await this.updater.checkUpdate();
 
             this.downloadInProgress = false;
 
