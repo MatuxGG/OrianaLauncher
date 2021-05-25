@@ -21,20 +21,23 @@ namespace OrianaLauncher
         public Pagelist pageList;
         public Config config;
         public AppWorker appWorker;
+        public Updater updater;
 
-        public int activeApp;
         public string token;
         public string appDataPath;
         public string tempPath;
         public string appPath;
         public Version version;
 
+        public int activeApp;
+        public bool downloadInProgress;
+        public string currentGithub; 
         public OrianaLauncher()
         {
 
             InitializeComponent();
 
-            this.Size = new Size(1920, 1080);
+            this.Size = new Size(1, 1);
             this.CenterToScreen();
 
             _ = this.Start();
@@ -61,12 +64,22 @@ namespace OrianaLauncher
                 Environment.Exit(0);
             }
 
+            //Check update
+            //this.updater = new Updater(this);
+            //await this.updater.checkUpdate();
+
+            this.downloadInProgress = false;
+
             this.config = new Config();
             this.config.load(this);
 
+
+            this.Size = new Size(this.config.resX, this.config.resY);
+            this.CenterToScreen();
+
             this.appList = new Applist(this);
             await this.appList.load();
-            this.activeApp = 1;
+            this.activeApp = 0;
 
             this.componentList = new Componentlist(this);
             this.componentList.load();
@@ -76,8 +89,14 @@ namespace OrianaLauncher
 
             this.appWorker = new AppWorker(this);
 
-            this.componentList.changeApp();
-            this.pageList.renderPage("Main-" + this.appList.apps[this.activeApp].name);
+            this.BackgroundImage = null;
+
+            this.componentList.events.openHomeWorker();
+        }
+
+        public void centerToScreenPub()
+        {
+            this.CenterToScreen();
         }
 
     }

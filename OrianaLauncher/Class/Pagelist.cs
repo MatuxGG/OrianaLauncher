@@ -20,6 +20,9 @@ namespace OrianaLauncher.Class
 
         public void load()
         {
+
+            this.pages.Add(new Page("Home", new string[] { "Menu", "AppHeader", "Home", "AppDownload" }));
+
             foreach (App a in this.orianaLauncher.appList.apps)
             {
                 if (a.name != "Origin")
@@ -34,7 +37,9 @@ namespace OrianaLauncher.Class
                     }
                 }
             }
-            
+
+            this.pages.Add(new Page("Settings", new string[] { "Menu", "AppHeader", "Settings", "AppDownload" }));
+
         }
 
         public void clear()

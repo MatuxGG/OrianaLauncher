@@ -39,6 +39,7 @@ namespace OrianaLauncher.Class
 
         public void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            this.orianaLauncher.downloadInProgress = true;
             var backgroundWorkerCode = sender as BackgroundWorker;
 
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
@@ -47,7 +48,7 @@ namespace OrianaLauncher.Class
 
             backgroundWorker.ReportProgress(0);
 
-            foreach (ReleaseAsset ra in this.orianaLauncher.appList.apps[0].release.Assets)
+            foreach (ReleaseAsset ra in this.orianaLauncher.appList.apps[0].releases.First().Assets)
             {
                 if (ra.Name.Contains("zip"))
                 {
@@ -75,7 +76,7 @@ namespace OrianaLauncher.Class
 
             backgroundWorker.ReportProgress(50);
 
-            foreach (ReleaseAsset ra in activeApp.release.Assets)
+            foreach (ReleaseAsset ra in activeApp.releases.First().Assets)
             {
                 if (ra.Name.Contains("zip"))
                 {
@@ -100,7 +101,7 @@ namespace OrianaLauncher.Class
             {
                 this.orianaLauncher.config.removeApp(activeApp.name);
             }
-            this.orianaLauncher.config.installedApp.Add(new InstalledApp(activeApp.name, activeApp.release.TagName));
+            this.orianaLauncher.config.installedApp.Add(new InstalledApp(activeApp.name, activeApp.releases.First().TagName));
             this.orianaLauncher.config.update(this.orianaLauncher);
 
             backgroundWorker.ReportProgress(100);
@@ -146,6 +147,9 @@ namespace OrianaLauncher.Class
             System.Windows.Forms.Label AppDownloadStatus = (System.Windows.Forms.Label)AppDownloadPanel.Controls["AppDownloadStatus"];
             AppDownloadStatus.Text = this.orianaLauncher.translator.lg("Completed !");
 
+            this.orianaLauncher.downloadInProgress = false;
+
+            this.orianaLauncher.componentList.changeButtons();
         }
     }
 }

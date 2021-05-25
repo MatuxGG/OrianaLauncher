@@ -15,7 +15,7 @@ namespace OrianaLauncher.Class
 
         public string github;
 
-        public Release release;
+        public List<Release> releases;
 
         public string[] strIncluded;
 
@@ -24,6 +24,8 @@ namespace OrianaLauncher.Class
         public string appFile;
 
         public bool changelogEnabled;
+
+        public int currentRelease;
 
         public App(string name, string author, string github, string[] strIncluded, string[] strExcluded, string appFile, bool changelogEnabled)
         {
@@ -34,7 +36,21 @@ namespace OrianaLauncher.Class
             this.strExcluded = strExcluded;
             this.appFile = appFile;
             this.changelogEnabled = changelogEnabled;
-            this.release = new Release();
+            this.releases = new List<Release>();
+            this.currentRelease = 0;
+        }
+
+        public App()
+        {
+            this.name = "";
+            this.author = "";
+            this.github = "";
+            this.strIncluded = new string[] { };
+            this.strExcluded = new string[] { };
+            this.appFile = "";
+            this.changelogEnabled = false;
+            this.releases = new List<Release>();
+            this.currentRelease = 0;
         }
 
         public async Task getGithubRelease(string token)
@@ -64,8 +80,7 @@ namespace OrianaLauncher.Class
                 
                 if (isRelease == true)
                 {
-                    this.release = r;
-                    return;
+                    this.releases.Add(r);
                 }
             }
             return;
