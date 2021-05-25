@@ -67,7 +67,7 @@ namespace OrianaLauncher.Class
 
             backgroundWorker.ReportProgress(25);
 
-            string appPath = this.orianaLauncher.appPath + "\\OrianaApps\\" + activeApp.name;
+            string appPath = this.orianaLauncher.appDataPath + "\\OrianaApps\\" + activeApp.name;
 
             this.orianaLauncher.utils.DirectoryDelete(appPath);
             Directory.CreateDirectory(appPath);

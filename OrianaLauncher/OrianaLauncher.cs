@@ -54,7 +54,7 @@ namespace OrianaLauncher
             this.version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             this.token = System.IO.File.ReadAllText(this.appPath + "\\token.txt");
 
-            Directory.CreateDirectory(this.appPath + "\\OrianaApps");
+            Directory.CreateDirectory(this.appDataPath + "\\OrianaApps");
             Directory.CreateDirectory(this.appDataPath);
             Directory.CreateDirectory(this.tempPath);
 
