@@ -9,7 +9,6 @@ using System.Windows.Forms;
 
 namespace OrianaLauncher.Class
 {
-
     public class Componentlist
     {
         public List<Component> components;
@@ -478,14 +477,11 @@ namespace OrianaLauncher.Class
             AppChangelogContentPanel.Location = new System.Drawing.Point((int)(10 * ratioX), (int)(110 * ratioY));
             AppChangelogContentPanel.Name = "AppChangelogContentPanel";
             AppChangelogContentPanel.BorderStyle = BorderStyle.None;
+            AppChangelogContentPanel.BackColor = Color.Transparent;
             AppChangelogContentPanel.BackgroundImage = global::OrianaLauncher.Properties.Resources.BG_Logs;
             AppChangelogContentPanel.BackgroundImageLayout = ImageLayout.Stretch;
             AppChangelogContentPanel.Size = new System.Drawing.Size((int)(585 * ratioX), (int)(540 * ratioY));
             AppChangelogContentPanel.TabStop = false;
-            AppChangelogContentPanel.AutoScroll = false;
-            AppChangelogContentPanel.HorizontalScroll.Enabled = false;
-            AppChangelogContentPanel.HorizontalScroll.Visible = false;
-            AppChangelogContentPanel.HorizontalScroll.Maximum = 0;
             AppChangelogContentPanel.AutoScroll = true;
             AppChangelogPanel.Controls.Add(AppChangelogContentPanel);
 
@@ -495,7 +491,8 @@ namespace OrianaLauncher.Class
             AppChangelogContent.TextAlign = ContentAlignment.TopLeft;
             AppChangelogContent.BackgroundImageLayout = ImageLayout.Stretch;
             AppChangelogContent.Location = new System.Drawing.Point((int)(10 * ratioX), (int)(10 * ratioY));
-            AppChangelogContent.Size = new System.Drawing.Size((int)(565 * ratioX), (int)(520 * ratioY));
+            AppChangelogContent.AutoSize = true;
+            AppChangelogContent.MaximumSize = new Size((int)(550 * ratioX), 0);
             AppChangelogContent.Name = "AppChangelogContent";
             AppChangelogContentPanel.Controls.Add(AppChangelogContent);
 

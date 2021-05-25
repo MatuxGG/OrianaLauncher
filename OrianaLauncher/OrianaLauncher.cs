@@ -43,8 +43,10 @@ namespace OrianaLauncher
             _ = this.Start();
         }
 
+
         public async Task Start()
         {
+
             this.appPath = System.AppDomain.CurrentDomain.BaseDirectory;
             this.appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\OrianaLauncher";
             this.tempPath = Path.GetTempPath() + "\\OrianaLauncher";

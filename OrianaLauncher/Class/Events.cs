@@ -41,7 +41,7 @@ namespace OrianaLauncher.Class
         public void startApp(object sender, EventArgs e)
         {
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
-            string appPath = this.orianaLauncher.appDataPath + "OrianaApps\\" + activeApp.name + "\\" + activeApp.appFile;
+            string appPath = this.orianaLauncher.appDataPath + "\\OrianaApps\\" + activeApp.name + "\\" + activeApp.appFile;
             Process.Start("explorer", appPath);
         }
 

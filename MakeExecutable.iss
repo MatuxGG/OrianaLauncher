@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OrianaLauncher"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "Oriana"
 #define MyAppURL "https://www.team-oriana.fr"
 #define MyAppExeName "OrianaLauncher.exe"
