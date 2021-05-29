@@ -27,11 +27,15 @@ namespace OrianaLauncher.Class
             this.backgroundWorker = new BackgroundWorker();
             this.backgroundWorker.WorkerReportsProgress = true;
             this.InitializeBackgroundWorker();
+            this.orianaLauncher.downloadInProgress = true;
+            this.orianaLauncher.componentList.changeButtons();
+
             this.backgroundWorker.RunWorkerAsync();
         }
 
         private void InitializeBackgroundWorker()
         {
+
             this.backgroundWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             this.backgroundWorker.ProgressChanged += new ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
@@ -39,7 +43,7 @@ namespace OrianaLauncher.Class
 
         public void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            this.orianaLauncher.downloadInProgress = true;
+
             var backgroundWorkerCode = sender as BackgroundWorker;
 
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];

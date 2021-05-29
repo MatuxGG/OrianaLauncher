@@ -37,8 +37,9 @@ namespace OrianaLauncher
 
             InitializeComponent();
 
-            this.Size = new Size(1, 1);
+            this.Size = new Size(0, 0);
             this.CenterToScreen();
+            this.Hide();
 
             _ = this.Start();
         }
@@ -78,6 +79,7 @@ namespace OrianaLauncher
 
             this.Size = new Size(this.config.resX, this.config.resY);
             this.CenterToScreen();
+            this.Show();
 
             this.appList = new Applist(this);
             await this.appList.load();

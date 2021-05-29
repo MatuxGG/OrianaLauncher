@@ -585,6 +585,26 @@ namespace OrianaLauncher.Class
             AppDownloadCredits.Text = versionMsg;
             AppDownloadPanel.Controls.Add(AppDownloadCredits);
 
+            PictureBox AppDownloadUpdatingButton = new System.Windows.Forms.PictureBox();
+            AppDownloadUpdatingButton.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadUpdatingButton.Location = new System.Drawing.Point((int)(800 * ratioX), (int)(50 * ratioY));
+            AppDownloadUpdatingButton.Name = "AppDownloadUpdatingButton";
+
+            if (this.orianaLauncher.config.language == "fr_FR")
+            {
+                AppDownloadUpdatingButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENUpdate;
+            }
+            else
+            {
+                AppDownloadUpdatingButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRMaj;
+            }
+
+            AppDownloadUpdatingButton.BackgroundImageLayout = ImageLayout.Stretch;
+            AppDownloadUpdatingButton.BackColor = Color.Transparent;
+            AppDownloadUpdatingButton.Size = new System.Drawing.Size((int)(208 * ratioX), (int)(49 * ratioY));
+            AppDownloadUpdatingButton.TabStop = false;
+            AppDownloadPanel.Controls.Add(AppDownloadUpdatingButton);
+
             PictureBox AppDownloadUpdateButton = new System.Windows.Forms.PictureBox();
             AppDownloadUpdateButton.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppDownloadUpdateButton.Location = new System.Drawing.Point((int)(800 * ratioX), (int)(50 * ratioY));
@@ -714,9 +734,11 @@ namespace OrianaLauncher.Class
                 Panel AppDownloadPanel = (Panel)this.get("AppDownload").getControl("AppDownloadPanel");
 
                 PictureBox AppDownloadUpdateButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdateButton"];
+                PictureBox AppDownloadUpdatingButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdatingButton"];
                 PictureBox AppDownloadUStartButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartButton"];
 
                 AppDownloadUpdateButton.Visible = false;
+                AppDownloadUpdatingButton.Visible = false;
                 AppDownloadUStartButton.Visible = false;
             } else
             {
@@ -725,6 +747,7 @@ namespace OrianaLauncher.Class
                 Panel AppDownloadPanel = (Panel)this.get("AppDownload").getControl("AppDownloadPanel");
 
                 PictureBox AppDownloadUpdateButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdateButton"];
+                PictureBox AppDownloadUpdatingButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdatingButton"];
                 PictureBox AppDownloadUStartButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartButton"];
 
                 string remoteVersion = activeApp.releases.First().TagName;
@@ -732,14 +755,15 @@ namespace OrianaLauncher.Class
 
                 if (installedApp == null)
                 {
-                    AppDownloadUpdateButton.Visible = true;
                     if (this.orianaLauncher.downloadInProgress == false)
                     {
-                        AppDownloadUpdateButton.Enabled = true;
+                        AppDownloadUpdatingButton.Visible = false;
+                        AppDownloadUpdateButton.Visible = true;
                     }
                     else
                     {
-                        AppDownloadUpdateButton.Enabled = false;
+                        AppDownloadUpdatingButton.Visible = true;
+                        AppDownloadUpdateButton.Visible = false;
                     }
                     //AppDownloadUpdateButton.Text = this.orianaLauncher.translator.lg("Install");
                     AppDownloadUStartButton.Visible = false;
@@ -750,18 +774,20 @@ namespace OrianaLauncher.Class
                     if (remoteVersion == installedVersion)
                     {
                         AppDownloadUpdateButton.Visible = false;
+                        AppDownloadUpdatingButton.Visible = false;
                         AppDownloadUStartButton.Visible = true;
                     }
                     else
                     {
-                        AppDownloadUpdateButton.Visible = true;
                         if (this.orianaLauncher.downloadInProgress == false)
                         {
-                            AppDownloadUpdateButton.Enabled = true;
+                            AppDownloadUpdateButton.Visible = true;
+                            AppDownloadUpdatingButton.Visible = false;
                         }
                         else
                         {
-                            AppDownloadUpdateButton.Enabled = false;
+                            AppDownloadUpdateButton.Visible = false;
+                            AppDownloadUpdatingButton.Visible = true;
                         }
                         //AppDownloadUpdateButton.Text = this.orianaLauncher.translator.lg("Update");
                         AppDownloadUStartButton.Visible = false;
@@ -769,6 +795,7 @@ namespace OrianaLauncher.Class
                 }
 
                 AppDownloadUpdateButton.BackColor = Color.Transparent;
+                AppDownloadUpdatingButton.BackColor = Color.Transparent;
                 AppDownloadUStartButton.BackColor = Color.Transparent;
             }
         }

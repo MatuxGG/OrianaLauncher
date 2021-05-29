@@ -203,6 +203,16 @@ namespace OrianaLauncher.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ENUpdate {
+            get {
+                object obj = ResourceManager.GetObject("ENUpdate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fr {
             get {
                 object obj = ResourceManager.GetObject("fr", resourceCulture);
@@ -216,6 +226,16 @@ namespace OrianaLauncher.Properties {
         internal static System.Drawing.Bitmap FRJouer {
             get {
                 object obj = ResourceManager.GetObject("FRJouer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FRMaj {
+            get {
+                object obj = ResourceManager.GetObject("FRMaj", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

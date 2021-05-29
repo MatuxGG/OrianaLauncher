@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OrianaLauncher"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "Oriana"
 #define MyAppURL "https://www.team-oriana.fr"
 #define MyAppExeName "OrianaLauncher.exe"
@@ -48,6 +48,7 @@ Source: "D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Release\net5.0-window
 Source: "D:\visualstudio\OrianaLauncher\OrianaLauncher\token.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Release\net5.0-windows\ref\*"; DestDir: "{app}\ref"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -56,4 +57,3 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
