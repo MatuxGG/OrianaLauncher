@@ -4,3 +4,9 @@
 - Download the latest "OrianaInstaller.exe" in the release section.
 - Launch the installer and choose a location for the software. (You shouldn't select your Among Us directory !)
 - Everything is set up ! :)
+
+## ModPolicy
+
+This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.
+
+More informatios = https://www.innersloth.com/modpolicy.php
