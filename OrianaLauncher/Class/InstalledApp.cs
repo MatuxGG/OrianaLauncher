@@ -12,10 +12,13 @@ namespace OrianaLauncher.Class
 
         public string version;
 
-        public InstalledApp(string name, string version)
+        public string clientVersion;
+
+        public InstalledApp(string name, string version, string clientVersion)
         {
             this.name = name;
             this.version = version;
+            this.clientVersion = clientVersion;
         }
     }
 }

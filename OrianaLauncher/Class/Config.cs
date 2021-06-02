@@ -26,9 +26,11 @@ namespace OrianaLauncher.Class
 
         public void load(OrianaLauncher orianaLauncher)
         {
+            orianaLauncher.logs.log("\nConfig : Loading");
             string path = orianaLauncher.appDataPath + "\\config.json";
             if (File.Exists(path))
             {
+                orianaLauncher.logs.log("Config exists");
                 string json = System.IO.File.ReadAllText(path);
                 Config config = Newtonsoft.Json.JsonConvert.DeserializeObject<Config>(json);
                 this.installedApp = config.installedApp;
@@ -38,24 +40,26 @@ namespace OrianaLauncher.Class
                 this.update(orianaLauncher);
             } else
             {
+                orianaLauncher.logs.log("Config doesn't exist");
                 this.installedApp = new List<InstalledApp>();
                 this.language = "en_US";
 
                 this.resX = 1920;
                 this.resY = 1080;
-                foreach (int[] size in this.getResolutions())
-                {
-                    if (Screen.PrimaryScreen.Bounds.Width > size[0]+100 && Screen.PrimaryScreen.Bounds.Height > size[1]+100)
-                    {
-                        this.resX = size[0];
-                        this.resY = size[1];
-                        break;
-                    }
-                }
-
-                
+                int[] size = this.getResolutions().First();
+                this.resX = size[0];
+                this.resY = size[1];
 
                 this.update(orianaLauncher);
+            }
+            orianaLauncher.logs.log("Config loaded");
+            orianaLauncher.logs.log("Config :");
+            orianaLauncher.logs.log("- Language : " + this.language);
+            orianaLauncher.logs.log("- Resolution : " + this.resX + "x" + this.resY);
+            orianaLauncher.logs.log("- Installed app :");
+            foreach (InstalledApp ia in this.installedApp)
+            {
+                orianaLauncher.logs.log("-- App : " + ia.name);
             }
             return;
         }
@@ -68,13 +72,22 @@ namespace OrianaLauncher.Class
 
         public List<int[]> getResolutions()
         {
+            List<int[]> temp = new List<int[]>();
+            temp.Add(new int[] { 1920, 1080 });
+            temp.Add(new int[] { 1600, 900 });
+            temp.Add(new int[] { 1368, 768 });
+            temp.Add(new int[] { 1280, 720 });
+            temp.Add(new int[] { 960, 540 });
+            temp.Add(new int[] { 854, 480 });
+
             List<int[]> res = new List<int[]>();
-            res.Add(new int[] { 1920, 1080 });
-            res.Add(new int[] { 1600, 900 });
-            res.Add(new int[] { 1368, 768 });
-            res.Add(new int[] { 1280, 720 });
-            res.Add(new int[] { 960, 540 });
-            res.Add(new int[] { 854, 480 });
+            foreach (int[] r in temp)
+            {
+                if (r[0] + 100 < Screen.PrimaryScreen.Bounds.Width && r[1] + 100 < Screen.PrimaryScreen.Bounds.Height)
+                {
+                    res.Add(r);
+                }
+            }
             return res;
         }
 

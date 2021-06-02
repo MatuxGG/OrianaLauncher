@@ -24,10 +24,12 @@ namespace OrianaLauncher.Class
 
         public async Task checkUpdate()
         {
+            this.orianaLauncher.logs.log("\nUpdater : Check update");
             await this.GetGithubVersion();
 
             if (this.latestVersion > this.orianaLauncher.version)
             {
+                this.orianaLauncher.logs.log("Update found");
                 string installerPath = this.orianaLauncher.tempPath + "\\OrianaInstaller.exe";
                 DialogResult userAction = MessageBox.Show("There is a new version of Oriana Launcher available. Oriana Launcher will auto update.\n\n" +
                     "Press OK to continue.", "Oriana Launcher Update", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
@@ -47,6 +49,7 @@ namespace OrianaLauncher.Class
                             }
                             catch
                             {
+                                this.orianaLauncher.logs.log("Error during download of new version");
                                 MessageBox.Show("Error : Can't download new version of Oriana Launcher.\n" +
                                     "\n" +
                                     "There are many possible reasons for this :\n" +
@@ -54,6 +57,7 @@ namespace OrianaLauncher.Class
                                     "- Your antivirus blocks Oriana\n", "Can't download update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 Environment.Exit(0);
                             }
+                            this.orianaLauncher.logs.log("Processing update");
                             Process.Start(installerPath);
                             Environment.Exit(0);
                         }
@@ -64,6 +68,7 @@ namespace OrianaLauncher.Class
             }
             else
             {
+                this.orianaLauncher.logs.log("No update available");
             }
         }
 

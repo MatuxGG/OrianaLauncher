@@ -20,7 +20,7 @@ namespace OrianaLauncher.Class
 
         public void load()
         {
-
+            this.orianaLauncher.logs.log("\nPagelist : loading");
             this.pages.Add(new Page("Home", new string[] { "Menu", "AppHeader", "Home", "AppDownload" }));
 
             foreach (App a in this.orianaLauncher.appList.apps)
@@ -39,6 +39,7 @@ namespace OrianaLauncher.Class
             }
 
             this.pages.Add(new Page("Settings", new string[] { "Menu", "AppHeader", "Settings", "AppDownload" }));
+            this.orianaLauncher.logs.log("Pagelist loaded");
 
         }
 

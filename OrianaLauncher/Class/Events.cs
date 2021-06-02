@@ -22,6 +22,7 @@ namespace OrianaLauncher.Class
         {
             ComboBox comboBox = ((ComboBox)sender);
             string selectedLg = comboBox.Text;
+            this.orianaLauncher.logs.log("\nEvent : Changing language to " + selectedLg);
             if (selectedLg == "Français")
             {
                 this.orianaLauncher.config.language = "fr_FR";
@@ -35,23 +36,27 @@ namespace OrianaLauncher.Class
 
         public void installApp(object sender, EventArgs e)
         {
+            this.orianaLauncher.logs.log("\nEvent : Installing app");
             this.orianaLauncher.appWorker.installApp();
         }
 
         public void startApp(object sender, EventArgs e)
         {
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
+            this.orianaLauncher.logs.log("\nEvent : Starting app " + activeApp.name);
             string appPath = this.orianaLauncher.appDataPath + "\\OrianaApps\\" + activeApp.name + "\\" + activeApp.appFile;
             Process.Start("explorer", appPath);
         }
 
         public void openDiscord(object sender, EventArgs e)
         {
+            this.orianaLauncher.logs.log("\nEvent : Opening discord");
             Process.Start("explorer", "https://discord.gg/j674KwNG6M");
         }
 
         public void openGithub(object sender, EventArgs e)
         {
+            this.orianaLauncher.logs.log("\nEvent : Opening github");
             Process.Start("explorer", this.orianaLauncher.currentGithub);
         }
 
@@ -62,6 +67,7 @@ namespace OrianaLauncher.Class
 
         public void openHomeWorker()
         {
+            this.orianaLauncher.logs.log("\nEvent : Opening home page");
             this.orianaLauncher.currentGithub = "https://github.com/MatuxGG/OrianaLauncher";
             this.orianaLauncher.activeApp = 0;
             this.orianaLauncher.componentList.changeMenu();
@@ -79,6 +85,7 @@ namespace OrianaLauncher.Class
         {
             ComboBox comboBox = ((ComboBox)sender);
             string selectedRes = comboBox.Text;
+            this.orianaLauncher.logs.log("\nEvent : Changing resolution to " + selectedRes);
             int resX = int.Parse(selectedRes.Substring(0, selectedRes.IndexOf("x")));
             int resY = int.Parse(selectedRes.Substring(selectedRes.IndexOf("x") + 1));
             this.orianaLauncher.config.resX = resX;
@@ -93,6 +100,7 @@ namespace OrianaLauncher.Class
 
         public void openSettingsWorker()
         {
+            this.orianaLauncher.logs.log("\nEvent : Opening settings page");
             this.orianaLauncher.currentGithub = "https://github.com/MatuxGG/OrianaLauncher";
             this.orianaLauncher.activeApp = this.orianaLauncher.appList.apps.Count();
             this.orianaLauncher.componentList.changeMenu();
@@ -103,6 +111,7 @@ namespace OrianaLauncher.Class
 
         public void showPreviousRelease(object sender, EventArgs e)
         {
+            this.orianaLauncher.logs.log("\nEvent : Showing previous release");
             App a = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
             if (a.currentRelease > 0)
             {
@@ -114,6 +123,7 @@ namespace OrianaLauncher.Class
 
         public void showNextRelease(object sender, EventArgs e)
         {
+            this.orianaLauncher.logs.log("\nEvent : Showing next release");
             App a = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
             if (a.currentRelease < a.releases.Count)
             {
@@ -124,6 +134,7 @@ namespace OrianaLauncher.Class
 
         public void changeApp(object sender, EventArgs e)
         {
+            this.orianaLauncher.logs.log("\nEvent : Changing app");
             PictureBox clickedLink = ((PictureBox)sender);
             this.orianaLauncher.activeApp = int.Parse(clickedLink.Name.Substring(clickedLink.Name.IndexOf("=") + 1));
             this.orianaLauncher.componentList.changeApp();

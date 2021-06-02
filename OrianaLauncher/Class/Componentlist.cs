@@ -26,6 +26,7 @@ namespace OrianaLauncher.Class
 
         public void load()
         {
+            this.orianaLauncher.logs.log("\nComponentlist : loading");
             this.orianaLauncher.Controls.Clear();
 
             float sizeM = 12F;
@@ -39,7 +40,7 @@ namespace OrianaLauncher.Class
                 sizeL = 14F;
                 sizeXL = 20F;
                 sizeXXL = 33F;
-                temp = 0;
+                temp = 5;
             }
             else if (this.orianaLauncher.config.resY == 768)
             {
@@ -56,7 +57,8 @@ namespace OrianaLauncher.Class
                 sizeXL = 18F;
                 sizeXXL = 30F;
                 temp = 10;
-            } else if (this.orianaLauncher.config.resY == 540) {
+            }
+            else if (this.orianaLauncher.config.resY == 540) {
                 sizeM = 8F;
                 sizeL = 10F;
                 sizeXL = 16F;
@@ -289,6 +291,18 @@ namespace OrianaLauncher.Class
             HomeLabel.Name = "HomeLabel";
             HomeLabel.AutoSize = true;
             HomePanel.Controls.Add(HomeLabel);
+
+            System.Windows.Forms.Label NoAffiliationLabel = new System.Windows.Forms.Label();
+            NoAffiliationLabel.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            NoAffiliationLabel.ForeColor = System.Drawing.SystemColors.Control;
+            NoAffiliationLabel.TextAlign = ContentAlignment.TopLeft;
+            NoAffiliationLabel.BackColor = Color.Transparent;
+            NoAffiliationLabel.Location = new System.Drawing.Point((int)(20 * ratioX), (int)(680 * ratioY));
+            NoAffiliationLabel.Size = new System.Drawing.Size((int)(1300 * ratioX), (int)(60 * ratioY));
+            NoAffiliationLabel.Name = "NoAffiliationLabel";
+            NoAffiliationLabel.Text = this.orianaLauncher.translator.lg("This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.");
+            HomePanel.Controls.Add(NoAffiliationLabel);
+
 
             this.components.Add(c);
 
@@ -650,6 +664,7 @@ namespace OrianaLauncher.Class
 
             this.components.Add(c);
 
+            this.orianaLauncher.logs.log("Componentlist loaded");
         }
 
         public void renderComponents(string[] components)
@@ -670,6 +685,7 @@ namespace OrianaLauncher.Class
         public void changeApp()
         {
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
+            this.orianaLauncher.logs.log("Changing to app " + activeApp.name);
 
             this.changeTitle(activeApp.name);
 
@@ -702,6 +718,7 @@ namespace OrianaLauncher.Class
 
         public void changeMenu()
         {
+            this.orianaLauncher.logs.log("Refreshing menu");
             Panel MenuPanel = (Panel)this.get("Menu").getControl("MenuPanel");
             int i = 0;
             foreach (Control c in MenuPanel.Controls)
@@ -729,6 +746,7 @@ namespace OrianaLauncher.Class
 
         public void changeButtons()
         {
+            this.orianaLauncher.logs.log("Refreshing buttons");
             if (this.orianaLauncher.activeApp == 0 || this.orianaLauncher.activeApp == this.orianaLauncher.appList.apps.Count())
             {
                 Panel AppDownloadPanel = (Panel)this.get("AppDownload").getControl("AppDownloadPanel");
@@ -771,7 +789,7 @@ namespace OrianaLauncher.Class
                 else
                 {
                     string installedVersion = installedApp.version.ToString();
-                    if (remoteVersion == installedVersion)
+                    if (remoteVersion == installedVersion && this.orianaLauncher.appList.apps.First().releases.First().TagName == installedApp.clientVersion)
                     {
                         AppDownloadUpdateButton.Visible = false;
                         AppDownloadUpdatingButton.Visible = false;
@@ -802,6 +820,7 @@ namespace OrianaLauncher.Class
 
         public void changeRelease(Release r)
         {
+            this.orianaLauncher.logs.log("Changing release");
             Panel AppChangelogPanel = (Panel)this.get("AppChangelog").getControl("AppChangelogPanel");
 
             System.Windows.Forms.Label AppChangelogVersion = (System.Windows.Forms.Label)AppChangelogPanel.Controls["AppChangelogVersion"];
@@ -847,6 +866,7 @@ namespace OrianaLauncher.Class
 
         public void refresh()
         {
+            this.orianaLauncher.logs.log("Refreshing componentlist");
             this.components = new List<Component>();
             this.load();
 

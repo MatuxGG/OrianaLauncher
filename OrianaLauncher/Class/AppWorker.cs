@@ -43,10 +43,10 @@ namespace OrianaLauncher.Class
 
         public void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-
             var backgroundWorkerCode = sender as BackgroundWorker;
 
             App activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
+            this.orianaLauncher.logs.log("\nApp Installer : Starting installation for app " + activeApp.name);
 
             ReleaseAsset asset = new ReleaseAsset();
 
@@ -64,12 +64,28 @@ namespace OrianaLauncher.Class
             string path = this.orianaLauncher.tempPath + "\\" + asset.Name;
             this.orianaLauncher.utils.FileDelete(path);
 
-            using (var client = new WebClient())
-            {
-                client.DownloadFile(asset.BrowserDownloadUrl, path);
-            }
 
+            this.orianaLauncher.logs.log("Downloading client version " + this.orianaLauncher.appList.apps[0].releases.First().Name + " (file : " + asset.Name + ")");
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(asset.BrowserDownloadUrl, path);
+                }
+            }
+            catch
+            {
+                this.orianaLauncher.logs.log("Error : Error when downloading client\n");
+                MessageBox.Show("Error : Can't download client.\n" +
+                                    "\n" +
+                                    "There are many possible reasons for this :\n" +
+                                    "- You are disconnected from internet\n" +
+                                    "- Your antivirus blocks Oriana\n", "Can't download client", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Environment.Exit(0);
+            }
             backgroundWorker.ReportProgress(25);
+            this.orianaLauncher.logs.log("Client downloaded");
+            this.orianaLauncher.logs.log("Extracting client");
 
             string appPath = this.orianaLauncher.appDataPath + "\\OrianaApps\\" + activeApp.name;
 
@@ -79,6 +95,7 @@ namespace OrianaLauncher.Class
             ZipFile.ExtractToDirectory(path, appPath);
 
             backgroundWorker.ReportProgress(50);
+            this.orianaLauncher.logs.log("Client extracted");
 
             foreach (ReleaseAsset ra in activeApp.releases.First().Assets)
             {
@@ -92,23 +109,43 @@ namespace OrianaLauncher.Class
             path = this.orianaLauncher.tempPath + "\\" + asset.Name;
             this.orianaLauncher.utils.FileDelete(path);
 
-            using (var client = new WebClient())
+            this.orianaLauncher.logs.log("Downloading app version " + activeApp.releases.First().Name + " (file : " + asset.Name + ")");
+            
+            try
             {
-                client.DownloadFile(asset.BrowserDownloadUrl, path);
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(asset.BrowserDownloadUrl, path);
+                }
             }
-
+            catch
+            {
+                this.orianaLauncher.logs.log("Error : Error when downloading app\n");
+                MessageBox.Show("Error : Can't download mod.\n" +
+                                    "\n" +
+                                    "There are many possible reasons for this :\n" +
+                                    "- You are disconnected from internet\n" +
+                                    "- Your antivirus blocks Oriana\n", "Can't download app", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Environment.Exit(0);
+            }
             backgroundWorker.ReportProgress(75);
 
+            this.orianaLauncher.logs.log("App downloaded");
+            this.orianaLauncher.logs.log("Extracting app");
+
             ZipFile.ExtractToDirectory(path, appPath);
+
+            this.orianaLauncher.logs.log("App extracted");
 
             if (this.orianaLauncher.config.containsApp(activeApp.name))
             {
                 this.orianaLauncher.config.removeApp(activeApp.name);
             }
-            this.orianaLauncher.config.installedApp.Add(new InstalledApp(activeApp.name, activeApp.releases.First().TagName));
+            this.orianaLauncher.config.installedApp.Add(new InstalledApp(activeApp.name, activeApp.releases.First().TagName, this.orianaLauncher.appList.apps[0].releases.First().TagName));
             this.orianaLauncher.config.update(this.orianaLauncher);
 
             backgroundWorker.ReportProgress(100);
+            this.orianaLauncher.logs.log("App installed successfully");
         }
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)

@@ -22,6 +22,7 @@ namespace OrianaLauncher
         public Config config;
         public AppWorker appWorker;
         public Updater updater;
+        public Logger logs;
 
         public string token;
         public string appDataPath;
@@ -61,8 +62,13 @@ namespace OrianaLauncher
             Directory.CreateDirectory(this.appDataPath);
             Directory.CreateDirectory(this.tempPath);
 
+            this.logs = new Logger();
+
+            this.logs.log("\nOriana Launcher version " + this.version.ToString().Remove(this.version.ToString().Length - 2));
+
             if (System.Diagnostics.Process.GetProcessesByName("OrianaLauncher").Length > 1)
             {
+                this.logs.log("\nOriana Launcher already running");
                 MessageBox.Show("Oriana Launcher is already running.", "Oriana Launcher already opened", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Environment.Exit(0);
             }
