@@ -203,9 +203,29 @@ namespace OrianaLauncher.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ENplay2 {
+            get {
+                object obj = ResourceManager.GetObject("ENplay2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ENUpdate {
             get {
                 object obj = ResourceManager.GetObject("ENUpdate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ENUpdate2 {
+            get {
+                object obj = ResourceManager.GetObject("ENUpdate2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +253,29 @@ namespace OrianaLauncher.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FRJouer2 {
+            get {
+                object obj = ResourceManager.GetObject("FRJouer2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FRMaj {
             get {
                 object obj = ResourceManager.GetObject("FRMaj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FRMaj2 {
+            get {
+                object obj = ResourceManager.GetObject("FRMaj2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

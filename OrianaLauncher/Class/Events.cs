@@ -46,6 +46,14 @@ namespace OrianaLauncher.Class
             this.orianaLauncher.logs.log("\nEvent : Starting app " + activeApp.name);
             string appPath = this.orianaLauncher.appDataPath + "\\OrianaApps\\" + activeApp.name + "\\" + activeApp.appFile;
             Process.Start("explorer", appPath);
+
+            Panel AppDownloadPanel = (Panel)this.orianaLauncher.componentList.get("AppDownload").getControl("AppDownloadPanel");
+
+            PictureBox AppDownloadUStartButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartButton"];
+            PictureBox AppDownloadUStartDisabledButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartDisabledButton"];
+
+            AppDownloadUStartButton.Visible = false;
+            AppDownloadUStartDisabledButton.Visible = true;
         }
 
         public void openDiscord(object sender, EventArgs e)

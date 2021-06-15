@@ -28,56 +28,56 @@ namespace OrianaLauncher.Class
         {
             this.orianaLauncher.logs.log("\nComponentlist : loading");
             this.orianaLauncher.Controls.Clear();
-
-            float sizeM = 12F;
-            float sizeL = 14F;
-            float sizeXL = 20F;
-            float sizeXXL = 36F;
+            /*
+            float fonts.sizeS = 12F;
+            float fonts.sizeM = 14F;
+            float fonts.sizeL = 20F;
+            float fonts.sizeXL = 36F;
             int temp = 0;
             if (this.orianaLauncher.config.resY == 900)
             {
-                sizeM = 12F;
-                sizeL = 14F;
-                sizeXL = 20F;
-                sizeXXL = 33F;
+                fonts.sizeS = 12F;
+                fonts.sizeM = 14F;
+                fonts.sizeL = 20F;
+                fonts.sizeXL = 33F;
                 temp = 5;
             }
             else if (this.orianaLauncher.config.resY == 768)
             {
-                sizeM = 10F;
-                sizeL = 12F;
-                sizeXL = 18F;
-                sizeXXL = 30F;
+                fonts.sizeS = 10F;
+                fonts.sizeM = 12F;
+                fonts.sizeL = 18F;
+                fonts.sizeXL = 30F;
                 temp = 10;
             }
             else if (this.orianaLauncher.config.resY == 720)
             {
-                sizeM = 10F;
-                sizeL = 12F;
-                sizeXL = 18F;
-                sizeXXL = 30F;
+                fonts.sizeS = 10F;
+                fonts.sizeM = 12F;
+                fonts.sizeL = 18F;
+                fonts.sizeXL = 30F;
                 temp = 10;
             }
             else if (this.orianaLauncher.config.resY == 540) {
-                sizeM = 8F;
-                sizeL = 10F;
-                sizeXL = 16F;
-                sizeXXL = 28F;
+                fonts.sizeS = 8F;
+                fonts.sizeM = 10F;
+                fonts.sizeL = 16F;
+                fonts.sizeXL = 28F;
                 temp = 20;
             }
             else if (this.orianaLauncher.config.resY == 480)
             {
-                sizeM = 6F;
-                sizeL = 8F;
-                sizeXL = 14F;
-                sizeXXL = 26F;
+                fonts.sizeS = 6F;
+                fonts.sizeM = 8F;
+                fonts.sizeL = 14F;
+                fonts.sizeXL = 26F;
                 temp = 22;
-            }
+            }*/
+
+            Fontlist fonts = new Fontlist(this.orianaLauncher.config.resY);
 
             double ratioX = (double) this.orianaLauncher.config.resX / 1920.0;
-            double ratioY = (double) (this.orianaLauncher.config.resY - temp) / 1080.0;
-
-            
+            double ratioY = (double) (this.orianaLauncher.config.resY - fonts.temp) / 1080.0;
 
             Component c = new Component("Menu");
 
@@ -104,7 +104,7 @@ namespace OrianaLauncher.Class
             MenuPanel.Controls.Add(HomePicPanel);
 
             PictureBox HomePic = new System.Windows.Forms.PictureBox();
-            HomePic.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            HomePic.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             HomePic.Location = new System.Drawing.Point((int)(20 * ratioX), (int)(20 * ratioY));
             HomePic.BackgroundImage = global::OrianaLauncher.Properties.Resources.logo_Oriana;
             HomePic.BackgroundImageLayout = ImageLayout.Stretch;
@@ -130,7 +130,7 @@ namespace OrianaLauncher.Class
                     MenuPanel.Controls.Add(AppPicPanel);
 
                     PictureBox AppPic = new System.Windows.Forms.PictureBox();
-                    AppPic.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    AppPic.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     AppPic.Location = new System.Drawing.Point((int)(20 * ratioX), (int)(20 * ratioY));
                     AppPic.BackColor = Color.Transparent;
                     if (a.name == "Challenger Lite")
@@ -166,7 +166,7 @@ namespace OrianaLauncher.Class
             MenuPanel.Controls.Add(SettingsPicPanel);
 
             PictureBox SettingsPic = new System.Windows.Forms.PictureBox();
-            SettingsPic.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            SettingsPic.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             SettingsPic.Location = new System.Drawing.Point((int)(20 * ratioX), (int)(20 * ratioY));
             SettingsPic.BackgroundImage = global::OrianaLauncher.Properties.Resources.settings;
             SettingsPic.BackColor = Color.Transparent;
@@ -195,7 +195,7 @@ namespace OrianaLauncher.Class
             c.addControl(AppHeaderPanel);
 
             System.Windows.Forms.Label AppHeaderTitle = new System.Windows.Forms.Label();
-            AppHeaderTitle.Font = new System.Drawing.Font("Arial", sizeXXL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppHeaderTitle.Font = new System.Drawing.Font("Arial", fonts.sizeXL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppHeaderTitle.ForeColor = System.Drawing.SystemColors.Control;
             AppHeaderTitle.BackgroundImage = global::OrianaLauncher.Properties.Resources.BG_Title;
             AppHeaderTitle.BackgroundImageLayout = ImageLayout.Stretch;
@@ -208,7 +208,7 @@ namespace OrianaLauncher.Class
 
             /*
             PictureBox AppHeaderFR = new System.Windows.Forms.PictureBox();
-            AppHeaderFR.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppHeaderFR.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppHeaderFR.Location = new System.Drawing.Point((int)(1550 * ratioX), (int)(15 * ratioY));
             AppHeaderFR.BackgroundImage = global::OrianaLauncher.Properties.Resources.fr;
             AppHeaderFR.BackgroundImageLayout = ImageLayout.Stretch;
@@ -221,7 +221,7 @@ namespace OrianaLauncher.Class
             AppHeaderPanel.Controls.Add(AppHeaderFR);
 
             PictureBox AppHeaderUS = new System.Windows.Forms.PictureBox();
-            AppHeaderUS.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppHeaderUS.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppHeaderUS.Location = new System.Drawing.Point((int)(1650 * ratioX), (int)(15 * ratioY));
             AppHeaderUS.BackgroundImage = global::OrianaLauncher.Properties.Resources.us;
             AppHeaderUS.BackgroundImageLayout = ImageLayout.Stretch;
@@ -235,7 +235,7 @@ namespace OrianaLauncher.Class
             */
 
             PictureBox AppHeaderDiscord = new System.Windows.Forms.PictureBox();
-            AppHeaderDiscord.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppHeaderDiscord.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppHeaderDiscord.Location = new System.Drawing.Point((int)(1550 * ratioX), (int)(50 * ratioY));
             AppHeaderDiscord.BackgroundImage = global::OrianaLauncher.Properties.Resources.discord;
             AppHeaderDiscord.BackgroundImageLayout = ImageLayout.Stretch;
@@ -248,7 +248,7 @@ namespace OrianaLauncher.Class
             AppHeaderPanel.Controls.Add(AppHeaderDiscord);
 
             PictureBox AppHeaderGithub = new System.Windows.Forms.PictureBox();
-            AppHeaderGithub.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppHeaderGithub.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppHeaderGithub.Location = new System.Drawing.Point((int)(1650 * ratioX), (int)(50 * ratioY));
             AppHeaderGithub.BackgroundImage = global::OrianaLauncher.Properties.Resources.github;
             AppHeaderGithub.BackgroundImageLayout = ImageLayout.Stretch;
@@ -283,7 +283,7 @@ namespace OrianaLauncher.Class
             c.addControl(HomePanel);
 
             System.Windows.Forms.Label HomeLabel = new System.Windows.Forms.Label();
-            HomeLabel.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            HomeLabel.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             HomeLabel.ForeColor = System.Drawing.SystemColors.Control;
             HomeLabel.TextAlign = ContentAlignment.TopLeft;
             HomeLabel.BackColor = Color.Transparent;
@@ -293,7 +293,7 @@ namespace OrianaLauncher.Class
             HomePanel.Controls.Add(HomeLabel);
 
             System.Windows.Forms.Label NoAffiliationLabel = new System.Windows.Forms.Label();
-            NoAffiliationLabel.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            NoAffiliationLabel.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             NoAffiliationLabel.ForeColor = System.Drawing.SystemColors.Control;
             NoAffiliationLabel.TextAlign = ContentAlignment.TopLeft;
             NoAffiliationLabel.BackColor = Color.Transparent;
@@ -327,7 +327,7 @@ namespace OrianaLauncher.Class
             c.addControl(SettingsPanel);
 
             System.Windows.Forms.Label ResolutionLabel = new System.Windows.Forms.Label();
-            ResolutionLabel.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ResolutionLabel.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ResolutionLabel.ForeColor = System.Drawing.SystemColors.Control;
             ResolutionLabel.TextAlign = ContentAlignment.TopLeft;
             ResolutionLabel.BackColor = Color.Transparent;
@@ -338,7 +338,7 @@ namespace OrianaLauncher.Class
             SettingsPanel.Controls.Add(ResolutionLabel);
 
             ComboBox ResolutionComboBox = new ComboBox();
-            ResolutionComboBox.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ResolutionComboBox.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ResolutionComboBox.Location = new System.Drawing.Point((int)(250 * ratioX), (int)(20 * ratioY));
             ResolutionComboBox.Name = "ResolutionComboBox";
             ResolutionComboBox.Size = new System.Drawing.Size((int)(150 * ratioX), (int)(30 * ratioY));
@@ -359,7 +359,7 @@ namespace OrianaLauncher.Class
             SettingsPanel.Controls.Add(ResolutionComboBox);
 
             System.Windows.Forms.Label LanguageLabel = new System.Windows.Forms.Label();
-            LanguageLabel.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            LanguageLabel.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             LanguageLabel.ForeColor = System.Drawing.SystemColors.Control;
             LanguageLabel.TextAlign = ContentAlignment.TopLeft;
             LanguageLabel.BackColor = Color.Transparent;
@@ -370,7 +370,7 @@ namespace OrianaLauncher.Class
             SettingsPanel.Controls.Add(LanguageLabel);
 
             ComboBox LanguageComboBox = new ComboBox();
-            LanguageComboBox.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            LanguageComboBox.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             LanguageComboBox.Location = new System.Drawing.Point((int)(250 * ratioX), (int)(70 * ratioY));
             LanguageComboBox.Name = "LanguageComboBox";
             LanguageComboBox.Size = new System.Drawing.Size((int)(150 * ratioX), (int)(30 * ratioY));
@@ -416,7 +416,7 @@ namespace OrianaLauncher.Class
             c.addControl(AppInfoPanel);
 
             System.Windows.Forms.Label AppInfoLabel = new System.Windows.Forms.Label();
-            AppInfoLabel.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppInfoLabel.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppInfoLabel.ForeColor = System.Drawing.SystemColors.Control;
             AppInfoLabel.TextAlign = ContentAlignment.TopLeft;
             AppInfoLabel.BackColor = Color.Transparent;
@@ -449,7 +449,7 @@ namespace OrianaLauncher.Class
             c.addControl(AppInfoLargePanel);
 
             System.Windows.Forms.Label AppInfoLargeLabel = new System.Windows.Forms.Label();
-            AppInfoLargeLabel.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppInfoLargeLabel.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppInfoLargeLabel.ForeColor = System.Drawing.SystemColors.Control;
             AppInfoLargeLabel.TextAlign = ContentAlignment.TopLeft;
             AppInfoLargeLabel.BackColor = Color.Transparent;
@@ -476,7 +476,7 @@ namespace OrianaLauncher.Class
             c.addControl(AppChangelogPanel);
 
             System.Windows.Forms.Label AppChangelogVersion = new System.Windows.Forms.Label();
-            AppChangelogVersion.Font = new System.Drawing.Font("Arial", sizeXL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppChangelogVersion.Font = new System.Drawing.Font("Arial", fonts.sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppChangelogVersion.ForeColor = System.Drawing.SystemColors.Control;
             AppChangelogVersion.BackgroundImage = global::OrianaLauncher.Properties.Resources.BG_Version;
             AppChangelogVersion.BackgroundImageLayout = ImageLayout.Stretch;
@@ -500,7 +500,7 @@ namespace OrianaLauncher.Class
             AppChangelogPanel.Controls.Add(AppChangelogContentPanel);
 
             System.Windows.Forms.Label AppChangelogContent = new System.Windows.Forms.Label();
-            AppChangelogContent.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppChangelogContent.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppChangelogContent.ForeColor = System.Drawing.SystemColors.Control;
             AppChangelogContent.TextAlign = ContentAlignment.TopLeft;
             AppChangelogContent.BackgroundImageLayout = ImageLayout.Stretch;
@@ -511,7 +511,7 @@ namespace OrianaLauncher.Class
             AppChangelogContentPanel.Controls.Add(AppChangelogContent);
 
             PictureBox AppChangelogPrevious = new System.Windows.Forms.PictureBox();
-            AppChangelogPrevious.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppChangelogPrevious.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppChangelogPrevious.Location = new System.Drawing.Point((int)(10 * ratioX), (int)(665 * ratioY));
             AppChangelogPrevious.BackgroundImage = global::OrianaLauncher.Properties.Resources.Icon_Prev;
             AppChangelogPrevious.BackgroundImageLayout = ImageLayout.Stretch;
@@ -524,7 +524,7 @@ namespace OrianaLauncher.Class
             AppChangelogPanel.Controls.Add(AppChangelogPrevious);
 
             PictureBox AppChangelogNext = new System.Windows.Forms.PictureBox();
-            AppChangelogNext.Font = new System.Drawing.Font("Arial", sizeL, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppChangelogNext.Font = new System.Drawing.Font("Arial", fonts.sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppChangelogNext.Location = new System.Drawing.Point((int)(545 * ratioX), (int)(665 * ratioY));
             AppChangelogNext.BackgroundImage = global::OrianaLauncher.Properties.Resources.Icon_next;
             AppChangelogNext.BackgroundImageLayout = ImageLayout.Stretch;
@@ -562,7 +562,7 @@ namespace OrianaLauncher.Class
             AppDownloadPanel.Controls.Add(AppDownloadBar);
 
             System.Windows.Forms.Label AppDownloadPercent = new System.Windows.Forms.Label();
-            AppDownloadPercent.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadPercent.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppDownloadPercent.ForeColor = System.Drawing.SystemColors.Control;
             AppDownloadPercent.BackColor = Color.Transparent;
             AppDownloadPercent.TextAlign = ContentAlignment.MiddleRight;
@@ -572,7 +572,7 @@ namespace OrianaLauncher.Class
             AppDownloadPanel.Controls.Add(AppDownloadPercent);
 
             System.Windows.Forms.Label AppDownloadStatus = new System.Windows.Forms.Label();
-            AppDownloadStatus.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadStatus.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppDownloadStatus.ForeColor = System.Drawing.SystemColors.Control;
             AppDownloadStatus.BackColor = Color.Transparent;
             AppDownloadStatus.TextAlign = ContentAlignment.MiddleRight;
@@ -582,7 +582,7 @@ namespace OrianaLauncher.Class
             AppDownloadPanel.Controls.Add(AppDownloadStatus);
 
             System.Windows.Forms.Label AppDownloadCredits = new System.Windows.Forms.Label();
-            AppDownloadCredits.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadCredits.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppDownloadCredits.ForeColor = System.Drawing.SystemColors.Control;
             AppDownloadCredits.TextAlign = ContentAlignment.MiddleLeft;
             AppDownloadCredits.BackColor = Color.Transparent;
@@ -600,7 +600,7 @@ namespace OrianaLauncher.Class
             AppDownloadPanel.Controls.Add(AppDownloadCredits);
 
             PictureBox AppDownloadUpdatingButton = new System.Windows.Forms.PictureBox();
-            AppDownloadUpdatingButton.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadUpdatingButton.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppDownloadUpdatingButton.Location = new System.Drawing.Point((int)(800 * ratioX), (int)(50 * ratioY));
             AppDownloadUpdatingButton.Name = "AppDownloadUpdatingButton";
 
@@ -620,17 +620,17 @@ namespace OrianaLauncher.Class
             AppDownloadPanel.Controls.Add(AppDownloadUpdatingButton);
 
             PictureBox AppDownloadUpdateButton = new System.Windows.Forms.PictureBox();
-            AppDownloadUpdateButton.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadUpdateButton.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppDownloadUpdateButton.Location = new System.Drawing.Point((int)(800 * ratioX), (int)(50 * ratioY));
             AppDownloadUpdateButton.Name = "AppDownloadUpdateButton";
             AppDownloadUpdateButton.Cursor = Cursors.Hand;
 
             if (this.orianaLauncher.config.language == "fr_FR")
             {
-                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENDownload;
+                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENUpdate2;
             } else
             {
-                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRtelecharger;
+                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRMaj2;
             }
 
             AppDownloadUpdateButton.BackgroundImageLayout = ImageLayout.Stretch;
@@ -640,8 +640,29 @@ namespace OrianaLauncher.Class
             AppDownloadUpdateButton.Click += new EventHandler(this.events.installApp);
             AppDownloadPanel.Controls.Add(AppDownloadUpdateButton);
 
+            PictureBox AppDownloadInstallButton = new System.Windows.Forms.PictureBox();
+            AppDownloadInstallButton.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadInstallButton.Location = new System.Drawing.Point((int)(800 * ratioX), (int)(50 * ratioY));
+            AppDownloadInstallButton.Name = "AppDownloadInstallButton";
+            AppDownloadInstallButton.Cursor = Cursors.Hand;
+
+            if (this.orianaLauncher.config.language == "fr_FR")
+            {
+                AppDownloadInstallButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENDownload;
+            } else
+            {
+                AppDownloadInstallButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRtelecharger;
+            }
+
+            AppDownloadInstallButton.BackgroundImageLayout = ImageLayout.Stretch;
+            AppDownloadInstallButton.BackColor = Color.Transparent;
+            AppDownloadInstallButton.Size = new System.Drawing.Size((int)(208 * ratioX), (int)(49 * ratioY));
+            AppDownloadInstallButton.TabStop = false;
+            AppDownloadInstallButton.Click += new EventHandler(this.events.installApp);
+            AppDownloadPanel.Controls.Add(AppDownloadInstallButton);
+
             PictureBox AppDownloadUStartButton = new System.Windows.Forms.PictureBox();
-            AppDownloadUStartButton.Font = new System.Drawing.Font("Arial", sizeM, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadUStartButton.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             AppDownloadUStartButton.Location = new System.Drawing.Point((int)(800 * ratioX), (int)(50 * ratioY));
             AppDownloadUStartButton.Name = "AppDownloadUStartButton";
             AppDownloadUStartButton.Cursor = Cursors.Hand;
@@ -661,6 +682,27 @@ namespace OrianaLauncher.Class
             AppDownloadUStartButton.TabStop = false;
             AppDownloadUStartButton.Click += new EventHandler(this.events.startApp);
             AppDownloadPanel.Controls.Add(AppDownloadUStartButton);
+
+            PictureBox AppDownloadUStartDisabledButton = new System.Windows.Forms.PictureBox();
+            AppDownloadUStartDisabledButton.Font = new System.Drawing.Font("Arial", fonts.sizeS, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            AppDownloadUStartDisabledButton.Location = new System.Drawing.Point((int)(800 * ratioX), (int)(50 * ratioY));
+            AppDownloadUStartDisabledButton.Name = "AppDownloadUStartDisabledButton";
+            AppDownloadUStartDisabledButton.Cursor = Cursors.Hand;
+
+            if (this.orianaLauncher.config.language == "fr_FR")
+            {
+                AppDownloadUStartDisabledButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENplay2;
+            }
+            else
+            {
+                AppDownloadUStartDisabledButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRJouer2;
+            }
+
+            AppDownloadUStartDisabledButton.BackgroundImageLayout = ImageLayout.Stretch;
+            AppDownloadUStartDisabledButton.BackColor = Color.Transparent;
+            AppDownloadUStartDisabledButton.Size = new System.Drawing.Size((int)(208 * ratioX), (int)(49 * ratioY));
+            AppDownloadUStartDisabledButton.TabStop = false;
+            AppDownloadPanel.Controls.Add(AppDownloadUStartDisabledButton);
 
             this.components.Add(c);
 
@@ -752,12 +794,16 @@ namespace OrianaLauncher.Class
                 Panel AppDownloadPanel = (Panel)this.get("AppDownload").getControl("AppDownloadPanel");
 
                 PictureBox AppDownloadUpdateButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdateButton"];
+                PictureBox AppDownloadInstallButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadInstallButton"];
                 PictureBox AppDownloadUpdatingButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdatingButton"];
                 PictureBox AppDownloadUStartButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartButton"];
+                PictureBox AppDownloadUStartDisabledButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartDisabledButton"];
 
                 AppDownloadUpdateButton.Visible = false;
+                AppDownloadInstallButton.Visible = false;
                 AppDownloadUpdatingButton.Visible = false;
                 AppDownloadUStartButton.Visible = false;
+                AppDownloadUStartDisabledButton.Visible = false;
             } else
             {
                 App activeApp = activeApp = this.orianaLauncher.appList.apps[this.orianaLauncher.activeApp];
@@ -765,8 +811,10 @@ namespace OrianaLauncher.Class
                 Panel AppDownloadPanel = (Panel)this.get("AppDownload").getControl("AppDownloadPanel");
 
                 PictureBox AppDownloadUpdateButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdateButton"];
+                PictureBox AppDownloadInstallButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadInstallButton"];
                 PictureBox AppDownloadUpdatingButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUpdatingButton"];
                 PictureBox AppDownloadUStartButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartButton"];
+                PictureBox AppDownloadUStartDisabledButton = (PictureBox)AppDownloadPanel.Controls["AppDownloadUStartDisabledButton"];
 
                 string remoteVersion = activeApp.releases.First().TagName;
                 InstalledApp installedApp = this.orianaLauncher.config.getApp(activeApp.name);
@@ -776,15 +824,18 @@ namespace OrianaLauncher.Class
                     if (this.orianaLauncher.downloadInProgress == false)
                     {
                         AppDownloadUpdatingButton.Visible = false;
-                        AppDownloadUpdateButton.Visible = true;
+                        AppDownloadInstallButton.Visible = true;
+                        AppDownloadUpdateButton.Visible = false;
                     }
                     else
                     {
                         AppDownloadUpdatingButton.Visible = true;
+                        AppDownloadInstallButton.Visible = false;
                         AppDownloadUpdateButton.Visible = false;
                     }
                     //AppDownloadUpdateButton.Text = this.orianaLauncher.translator.lg("Install");
                     AppDownloadUStartButton.Visible = false;
+                    AppDownloadUStartDisabledButton.Visible = false;
                 }
                 else
                 {
@@ -792,6 +843,7 @@ namespace OrianaLauncher.Class
                     if (remoteVersion == installedVersion && this.orianaLauncher.appList.apps.First().releases.First().TagName == installedApp.clientVersion)
                     {
                         AppDownloadUpdateButton.Visible = false;
+                        AppDownloadInstallButton.Visible = false;
                         AppDownloadUpdatingButton.Visible = false;
                         AppDownloadUStartButton.Visible = true;
                     }
@@ -800,15 +852,18 @@ namespace OrianaLauncher.Class
                         if (this.orianaLauncher.downloadInProgress == false)
                         {
                             AppDownloadUpdateButton.Visible = true;
+                            AppDownloadInstallButton.Visible = false;
                             AppDownloadUpdatingButton.Visible = false;
                         }
                         else
                         {
                             AppDownloadUpdateButton.Visible = false;
+                            AppDownloadInstallButton.Visible = false;
                             AppDownloadUpdatingButton.Visible = true;
                         }
                         //AppDownloadUpdateButton.Text = this.orianaLauncher.translator.lg("Update");
                         AppDownloadUStartButton.Visible = false;
+                        AppDownloadUStartDisabledButton.Visible = false;
                     }
                 }
 

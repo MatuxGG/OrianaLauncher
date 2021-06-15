@@ -7,6 +7,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -35,7 +36,6 @@ namespace OrianaLauncher.Class
 
         private void InitializeBackgroundWorker()
         {
-
             this.backgroundWorker.DoWork += new DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             this.backgroundWorker.ProgressChanged += new ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
@@ -50,6 +50,11 @@ namespace OrianaLauncher.Class
 
             ReleaseAsset asset = new ReleaseAsset();
 
+            Panel AppDownloadPanel = (Panel)this.orianaLauncher.componentList.get("AppDownload").getControl("AppDownloadPanel");
+            ProgressBar AppDownloadBar = (ProgressBar)AppDownloadPanel.Controls["AppDownloadBar"];
+            
+            System.Windows.Forms.Label AppDownloadPercent = (System.Windows.Forms.Label)AppDownloadPanel.Controls["AppDownloadPercent"];
+
             backgroundWorker.ReportProgress(0);
 
             foreach (ReleaseAsset ra in this.orianaLauncher.appList.apps[0].releases.First().Assets)
@@ -61,28 +66,41 @@ namespace OrianaLauncher.Class
                 }
             }
 
+            string cacheName = this.orianaLauncher.tempPath + "\\" + this.orianaLauncher.appList.apps[0].releases.First().Name + ".cache";
+
             string path = this.orianaLauncher.tempPath + "\\" + asset.Name;
-            this.orianaLauncher.utils.FileDelete(path);
 
-
-            this.orianaLauncher.logs.log("Downloading client version " + this.orianaLauncher.appList.apps[0].releases.First().Name + " (file : " + asset.Name + ")");
-            try
+            backgroundWorker.ReportProgress(5);
+            if (File.Exists(cacheName) && File.Exists(path))
             {
-                using (var client = new WebClient())
+                // Using cache
+                this.orianaLauncher.logs.log("Found client version " + this.orianaLauncher.appList.apps[0].releases.First().Name + " in cache (file : " + asset.Name + ")");
+            } else
+            {
+                this.orianaLauncher.logs.log("Downloading client version " + this.orianaLauncher.appList.apps[0].releases.First().Name + " (file : " + asset.Name + ")");
+                try
                 {
-                    client.DownloadFile(asset.BrowserDownloadUrl, path);
+                    using (WebClient wc = new WebClient())
+                    {
+                        wc.DownloadProgressChanged += wc_DownloadProgressChanged;
+                        wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                        wc.DownloadFile(new Uri(asset.BrowserDownloadUrl), path);
+                    }
                 }
+                catch
+                {
+                    this.orianaLauncher.logs.log("Error : Error when downloading client\n");
+                    MessageBox.Show("Error : Can't download client.\n" +
+                                        "\n" +
+                                        "There are many possible reasons for this :\n" +
+                                        "- You are disconnected from internet\n" +
+                                        "- Your antivirus blocks Oriana\n", "Can't download client", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Environment.Exit(0);
+                }
+
+                File.Create(cacheName);
             }
-            catch
-            {
-                this.orianaLauncher.logs.log("Error : Error when downloading client\n");
-                MessageBox.Show("Error : Can't download client.\n" +
-                                    "\n" +
-                                    "There are many possible reasons for this :\n" +
-                                    "- You are disconnected from internet\n" +
-                                    "- Your antivirus blocks Oriana\n", "Can't download client", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Environment.Exit(0);
-            }
+
             backgroundWorker.ReportProgress(25);
             this.orianaLauncher.logs.log("Client downloaded");
             this.orianaLauncher.logs.log("Extracting client");
@@ -106,28 +124,41 @@ namespace OrianaLauncher.Class
                 }
             }
 
-            path = this.orianaLauncher.tempPath + "\\" + asset.Name;
-            this.orianaLauncher.utils.FileDelete(path);
+            cacheName = this.orianaLauncher.tempPath + "\\" + activeApp.releases.First().Name + ".cache";
 
-            this.orianaLauncher.logs.log("Downloading app version " + activeApp.releases.First().Name + " (file : " + asset.Name + ")");
-            
-            try
+            path = this.orianaLauncher.tempPath + "\\" + asset.Name;
+
+            if (File.Exists(cacheName) && File.Exists(path))
             {
-                using (var client = new WebClient())
+                // Using cache
+                this.orianaLauncher.logs.log("Found app version " + activeApp.releases.First().Name + " in cache (file : " + asset.Name + ")");
+            } else
+            {
+                this.orianaLauncher.logs.log("Downloading app version " + activeApp.releases.First().Name + " (file : " + asset.Name + ")");
+
+                try
                 {
-                    client.DownloadFile(asset.BrowserDownloadUrl, path);
+                    using (WebClient wc = new WebClient())
+                    {
+                        wc.DownloadProgressChanged += wc_DownloadProgressChanged;
+                        wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                        wc.DownloadFile(new Uri(asset.BrowserDownloadUrl), path);
+                    }
                 }
+                catch
+                {
+                    this.orianaLauncher.logs.log("Error : Error when downloading app\n");
+                    MessageBox.Show("Error : Can't download mod.\n" +
+                                        "\n" +
+                                        "There are many possible reasons for this :\n" +
+                                        "- You are disconnected from internet\n" +
+                                        "- Your antivirus blocks Oriana\n", "Can't download app", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Environment.Exit(0);
+                }
+
+                File.Create(cacheName);
             }
-            catch
-            {
-                this.orianaLauncher.logs.log("Error : Error when downloading app\n");
-                MessageBox.Show("Error : Can't download mod.\n" +
-                                    "\n" +
-                                    "There are many possible reasons for this :\n" +
-                                    "- You are disconnected from internet\n" +
-                                    "- Your antivirus blocks Oriana\n", "Can't download app", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Environment.Exit(0);
-            }
+
             backgroundWorker.ReportProgress(75);
 
             this.orianaLauncher.logs.log("App downloaded");
@@ -148,11 +179,23 @@ namespace OrianaLauncher.Class
             this.orianaLauncher.logs.log("App installed successfully");
         }
 
+        private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            backgroundWorker.ReportProgress(e.ProgressPercentage);
+        }
+
+        private void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            backgroundWorker.ReportProgress(100);
+        }
+
+
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             Panel AppDownloadPanel = (Panel) this.orianaLauncher.componentList.get("AppDownload").getControl("AppDownloadPanel");
             ProgressBar AppDownloadBar = (ProgressBar)AppDownloadPanel.Controls["AppDownloadBar"];
             AppDownloadBar.Value = e.ProgressPercentage;
+
             System.Windows.Forms.Label AppDownloadPercent = (System.Windows.Forms.Label)AppDownloadPanel.Controls["AppDownloadPercent"];
             AppDownloadPercent.Text = e.ProgressPercentage + "%";
 

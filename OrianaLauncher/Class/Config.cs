@@ -1,4 +1,4 @@
-﻿using System;
+﻿using   System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -73,12 +73,14 @@ namespace OrianaLauncher.Class
         public List<int[]> getResolutions()
         {
             List<int[]> temp = new List<int[]>();
-            temp.Add(new int[] { 1920, 1080 });
-            temp.Add(new int[] { 1600, 900 });
-            temp.Add(new int[] { 1368, 768 });
-            temp.Add(new int[] { 1280, 720 });
-            temp.Add(new int[] { 960, 540 });
-            temp.Add(new int[] { 854, 480 });
+            int x = 2880;
+            int y = 1620;
+            while (y >= 450)
+            {
+                temp.Add(new int[] { x, y });
+                x = (x * (y - 90)) / y;
+                y = y - 90;
+            }
 
             List<int[]> res = new List<int[]>();
             foreach (int[] r in temp)
