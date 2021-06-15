@@ -28,51 +28,6 @@ namespace OrianaLauncher.Class
         {
             this.orianaLauncher.logs.log("\nComponentlist : loading");
             this.orianaLauncher.Controls.Clear();
-            /*
-            float fonts.sizeS = 12F;
-            float fonts.sizeM = 14F;
-            float fonts.sizeL = 20F;
-            float fonts.sizeXL = 36F;
-            int temp = 0;
-            if (this.orianaLauncher.config.resY == 900)
-            {
-                fonts.sizeS = 12F;
-                fonts.sizeM = 14F;
-                fonts.sizeL = 20F;
-                fonts.sizeXL = 33F;
-                temp = 5;
-            }
-            else if (this.orianaLauncher.config.resY == 768)
-            {
-                fonts.sizeS = 10F;
-                fonts.sizeM = 12F;
-                fonts.sizeL = 18F;
-                fonts.sizeXL = 30F;
-                temp = 10;
-            }
-            else if (this.orianaLauncher.config.resY == 720)
-            {
-                fonts.sizeS = 10F;
-                fonts.sizeM = 12F;
-                fonts.sizeL = 18F;
-                fonts.sizeXL = 30F;
-                temp = 10;
-            }
-            else if (this.orianaLauncher.config.resY == 540) {
-                fonts.sizeS = 8F;
-                fonts.sizeM = 10F;
-                fonts.sizeL = 16F;
-                fonts.sizeXL = 28F;
-                temp = 20;
-            }
-            else if (this.orianaLauncher.config.resY == 480)
-            {
-                fonts.sizeS = 6F;
-                fonts.sizeM = 8F;
-                fonts.sizeL = 14F;
-                fonts.sizeXL = 26F;
-                temp = 22;
-            }*/
 
             Fontlist fonts = new Fontlist(this.orianaLauncher.config.resY);
 
@@ -606,11 +561,11 @@ namespace OrianaLauncher.Class
 
             if (this.orianaLauncher.config.language == "fr_FR")
             {
-                AppDownloadUpdatingButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENUpdate;
+                AppDownloadUpdatingButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRMaj;
             }
             else
             {
-                AppDownloadUpdatingButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRMaj;
+                AppDownloadUpdatingButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENUpdate;
             }
 
             AppDownloadUpdatingButton.BackgroundImageLayout = ImageLayout.Stretch;
@@ -627,10 +582,10 @@ namespace OrianaLauncher.Class
 
             if (this.orianaLauncher.config.language == "fr_FR")
             {
-                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENUpdate2;
+                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRMaj2;
             } else
             {
-                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRMaj2;
+                AppDownloadUpdateButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENUpdate2;
             }
 
             AppDownloadUpdateButton.BackgroundImageLayout = ImageLayout.Stretch;
@@ -648,10 +603,10 @@ namespace OrianaLauncher.Class
 
             if (this.orianaLauncher.config.language == "fr_FR")
             {
-                AppDownloadInstallButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENDownload;
+                AppDownloadInstallButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRtelecharger;
             } else
             {
-                AppDownloadInstallButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRtelecharger;
+                AppDownloadInstallButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENDownload;
             }
 
             AppDownloadInstallButton.BackgroundImageLayout = ImageLayout.Stretch;
@@ -669,11 +624,11 @@ namespace OrianaLauncher.Class
 
             if (this.orianaLauncher.config.language == "fr_FR")
             {
-                AppDownloadUStartButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENplay;
+                AppDownloadUStartButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRJouer;
             }
             else
             {
-                AppDownloadUStartButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRJouer;
+                AppDownloadUStartButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENplay;
             }
 
             AppDownloadUStartButton.BackgroundImageLayout = ImageLayout.Stretch;
@@ -691,11 +646,11 @@ namespace OrianaLauncher.Class
 
             if (this.orianaLauncher.config.language == "fr_FR")
             {
-                AppDownloadUStartDisabledButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENplay2;
+                AppDownloadUStartDisabledButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRJouer2;
             }
             else
             {
-                AppDownloadUStartDisabledButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.FRJouer2;
+                AppDownloadUStartDisabledButton.BackgroundImage = global::OrianaLauncher.Properties.Resources.ENplay2;
             }
 
             AppDownloadUStartDisabledButton.BackgroundImageLayout = ImageLayout.Stretch;
