@@ -20,3 +20,8 @@ D:\visualstudio\OrianaLauncher\OrianaLauncher\obj\Debug\net5.0-windows\OrianaLau
 D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Octokit.dll
 D:\visualstudio\OrianaLauncher\OrianaLauncher\obj\Debug\net5.0-windows\OrianaLauncher.csproj.CopyComplete
 D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Google.Apis.dll
+D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Google.Apis.Auth.PlatformServices.dll
+D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Google.Apis.Auth.dll
+D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Google.Apis.Core.dll
+D:\visualstudio\OrianaLauncher\OrianaLauncher\bin\Debug\net5.0-windows\Google.Apis.Sheets.v4.dll

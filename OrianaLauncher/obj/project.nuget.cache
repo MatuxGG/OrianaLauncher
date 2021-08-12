@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "r5SRdwNEKEoWTb6q4CHXy2/aC7ImRyDHu9Wv5mB+LvB6ueRJZ7FS3IA1d6IsYLMRL7jbCk/7YPUcN74OfPwhNg==",
+  "dgSpecHash": "pnPd2LqsE93SW1hK4k3tYP59n+GJLhYS6rFjqcKVEXkYWbtKZfs92rgKTi/oXfbj3tEveoVQ1s2IhfRTaovE5w==",
   "success": true,
   "projectFilePath": "D:\\visualstudio\\OrianaLauncher\\OrianaLauncher\\OrianaLauncher.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\mattt\\.nuget\\packages\\google.apis\\1.52.0\\google.apis.1.52.0.nupkg.sha512",
+    "C:\\Users\\mattt\\.nuget\\packages\\google.apis.auth\\1.52.0\\google.apis.auth.1.52.0.nupkg.sha512",
+    "C:\\Users\\mattt\\.nuget\\packages\\google.apis.core\\1.52.0\\google.apis.core.1.52.0.nupkg.sha512",
+    "C:\\Users\\mattt\\.nuget\\packages\\google.apis.sheets.v4\\1.52.0.2371\\google.apis.sheets.v4.1.52.0.2371.nupkg.sha512",
     "C:\\Users\\mattt\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\mattt\\.nuget\\packages\\octokit\\0.50.0\\octokit.0.50.0.nupkg.sha512"
   ],
