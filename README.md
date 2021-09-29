@@ -4,7 +4,7 @@ Mod available here : https://github.com/Lunastellia/Challenger-Among-Us
 # How to install ?
 
 - Download and install .net 5 [here](https://matux.fr/dotnet64). (Or alternatively from [here](https://matux.fr/dotnet32) if you're using a 32bit system)
-- Download the latest "OrianaInstaller.exe" in the release section.
+- Download the latest "OrianaInstaller.exe" available [here](https://challenger.matux.fr/download).
 - Launch the installer and choose a location for the software. (You shouldn't select your Among Us directory !)
 - Everything is set up ! :)
 
